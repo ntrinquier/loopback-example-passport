@@ -41,6 +41,15 @@ passportConfigurator.setupModels({
   userCredentialModel: app.models.userCredential,
 });
 
+var config = require('../providers.json');
+passportConfigurator.configureProvider('google-login', config['google-login']);
+
+app.get('/auth/account', ensureLoggedIn('/login'), function(req, res, next) {
+  res.render('pages/loginProfiles', {
+    user: req.user,
+  });
+});
+
 app.get('/', function(req, res, next) {
   res.render('pages/index', {user:
     req.user,
