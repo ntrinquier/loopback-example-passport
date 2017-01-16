@@ -43,8 +43,15 @@ passportConfigurator.setupModels({
 
 var config = require('../providers.json');
 passportConfigurator.configureProvider('google-login', config['google-login']);
+passportConfigurator.configureProvider('twitter-link', config['twitter-link']);
 
 app.get('/auth/account', ensureLoggedIn('/login'), function(req, res, next) {
+  res.render('pages/loginProfiles', {
+    user: req.user,
+  });
+});
+
+app.get('/link/account', ensureLoggedIn('/login'), function(req, res, next) {
   res.render('pages/loginProfiles', {
     user: req.user,
   });
