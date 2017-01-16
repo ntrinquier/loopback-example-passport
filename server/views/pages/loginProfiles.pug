@@ -1,0 +1,20 @@
+extends ../layouts/layout
+
+block content
+  h2 Third-Party Profile
+  .small
+    if user.profiles.length !== 0
+      h3= 'Hello ' + user.profiles[0].profile.displayName + '!'
+    else
+      | No third-party profile 😢
+
+  h2 Linked Account
+  .small
+    if user.accounts.length !== 0
+      h3= 'Hello ' + user.accounts[0].profile.displayName + '!'
+      a(href='/tweet') Tweet!
+    else
+      ul.list-inline.list-unstyled
+        li
+          a.btn.btn-primary(href="/link/twitter") Link Twitter
+      | No linked account 😢

@@ -1,0 +1,15 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "mongolab": {
+    "name": "mongolab",
+    "connector": "mongodb",
+    "host": "ds155087.mlab.com",
+    "port": 55087,
+    "database": "loopback-passport-demo",
+    "username": "admin",
+    "password": "admin"
+  }
+}

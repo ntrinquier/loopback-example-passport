@@ -1,0 +1,30 @@
+{
+  "google-login": {
+    "provider": "google",
+    "module": "passport-google-oauth",
+    "strategy": "OAuth2Strategy",
+    "clientID": "",
+    "clientSecret": "",
+    "callbackURL": "/auth/google/callback",
+    "authPath": "/auth/google",
+    "callbackPath": "/auth/google/callback",
+    "successRedirect": "/auth/account",
+    "failureRedirect": "/login",
+    "scope": ["email", "profile"],
+    "session": true
+  },
+  "twitter-link": {
+    "provider": "twitter",
+    "authScheme": "oauth",
+    "module": "passport-twitter",
+    "callbackURL": "/link/twitter/callback",
+    "authPath": "/link/twitter",
+    "callbackPath": "/link/twitter/callback",
+    "successRedirect": "/link/account",
+    "failureRedirect": "/login",
+    "consumerKey": "",
+    "consumerSecret": "",
+    "link": true,
+    "session": true
+  }
+}
