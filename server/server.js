@@ -57,6 +57,23 @@ app.get('/link/account', ensureLoggedIn('/login'), function(req, res, next) {
   });
 });
 
+app.get('/tweet', ensureLoggedIn('/login'), function(req, res, next) {
+  request.post({
+    url: 'https://api.twitter.com/1.1/statuses/update.json',
+    oauth: {
+      consumer_key: config['twitter-link'].consumerKey,
+      consumer_secret: config['twitter-link'].consumerSecret,
+      token: req.user.accounts[0].credentials.token,
+      token_secret: req.user.accounts[0].credentials.tokenSecret
+    },
+    qs: {
+      status: 'Check out how to configure #passportjs https://github.com/ntrinquier/loopback-example-passport :)'
+    }
+  }, function() {
+    res.redirect('https://twitter.com/ntrinquier');
+  });
+});
+
 app.get('/', function(req, res, next) {
   res.render('pages/index', {user:
     req.user,
