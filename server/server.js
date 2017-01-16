@@ -9,6 +9,9 @@ var expressSession = require('express-session');
 var bodyParser = require('body-parser');
 var request = require('request');
 
+var PassportConfigurator = require('loopback-component-passport').PassportConfigurator;
+var passportConfigurator = new PassportConfigurator(app);
+
 var path = require('path');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -30,6 +33,13 @@ app.middleware('session', expressSession({
   saveUninitialized: true,
   secret: app.get('sessionSecret'),
 }));
+
+passportConfigurator.init();
+passportConfigurator.setupModels({
+  userModel: app.models.user,
+  userIdentityModel: app.models.userIdentity,
+  userCredentialModel: app.models.userCredential,
+});
 
 app.get('/', function(req, res, next) {
   res.render('pages/index', {user:
